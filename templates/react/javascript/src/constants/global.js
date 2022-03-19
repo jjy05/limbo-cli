@@ -1,0 +1,1 @@
+export const GLOBAL_CONST = 'GLOBAL_CONST';
