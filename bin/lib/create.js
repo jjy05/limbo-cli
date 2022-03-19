@@ -68,7 +68,11 @@ function copyTemplate (dir, type, options = {}) {
   const { tpls = [] } = template;
   const { tplOptions = {} } = options;
 
-  fs.copySync(path.join(__dirname, './../../templates/', template.path), dir);
+  fs.copySync(path.join(__dirname, './../../templates/', template.path), dir, {
+    filter: (src) => {
+      return !src.endsWith('.tpl');
+    }
+  });
   tpls.forEach(tpl => {
     generateTpl(dir, tpl, tplOptions);
   })
