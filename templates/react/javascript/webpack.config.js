@@ -27,24 +27,6 @@ module.exports = smp.wrap({
         parallel: true,
       }),
     ],
-    // splitChunks: {
-    //   chunks: 'all',
-    //   cacheGroups: {
-    //     vendor: {
-    //       name: 'vendor',
-    //       priority: 1,
-    //       test: /node_modules/,
-    //       minSize: 50,
-    //       minChunks: 1
-    //     },
-    //     common: {
-    //       name: 'common',
-    //       priority: 0,
-    //       minSize: 0,
-    //       minChunks: 2,
-    //     }
-    //   }
-    // }
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -60,8 +42,6 @@ module.exports = smp.wrap({
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: [
-          // 'thread-loader',
-          // 'cache-loader',
           'babel-loader'
         ],
         include: basePath,
@@ -73,7 +53,10 @@ module.exports = smp.wrap({
             loader: 'style-loader'
           },
           {
-            loader: 'css-loader'
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            }
           },
           {
             loader: 'postcss-loader',
@@ -82,6 +65,23 @@ module.exports = smp.wrap({
                 path: "postcss.config.js"
               }
             }
+          }
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            }
+          },
+          {
+            loader: 'less-loader'
           }
         ]
       },

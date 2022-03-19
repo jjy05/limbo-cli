@@ -1,7 +1,10 @@
 import React from 'react';
+import Home from './pages/index';
 
 const App = () => {
-  return <div>APP</div>;
+  return <div>
+    <Home />
+  </div>;
 }
 
 export default App;
